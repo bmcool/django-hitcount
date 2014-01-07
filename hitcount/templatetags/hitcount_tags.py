@@ -168,13 +168,13 @@ class GetHitCountJavascript(template.Node):
                         object_pk=object_pk)
 
         js =    "<script><!--\n" + \
-                "$(function() {" + \
+                "$(function() {\n" + \
                 "$.post( '" + reverse('hitcount_update_ajax') + "',"   + \
                 "\n\t{ hitcount_pk : '" + str(obj.pk) + "', 'csrfmiddlewaretoken': getCookie('csrftoken') },\n"         + \
                 "\tfunction(data, status) {\n"                         + \
                 "\t\tif (data.status == 'error') {\n"                  + \
                 "\t\t\t// do something for error?\n"                   + \
-                "\t\t}\n\t},\n\t'json');" + \
+                "\t\t}\n\t},\n\t'json');\n" + \
                 "});\n" + \
                 "--></script>"
 
