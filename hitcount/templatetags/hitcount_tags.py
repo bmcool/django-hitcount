@@ -167,14 +167,16 @@ class GetHitCountJavascript(template.Node):
         obj, created = HitCount.objects.get_or_create(content_type=ctype, 
                         object_pk=object_pk)
 
-        js =    "<script><!--$(function() {" + \
+        js =    "<script><!--" + \
+                "$(function() {" + \
                 "$.post( '" + reverse('hitcount_update_ajax') + "',"   + \
                 "\n\t{ hitcount_pk : '" + str(obj.pk) + "', 'csrfmiddlewaretoken': getCookie('csrftoken') },\n"         + \
                 "\tfunction(data, status) {\n"                         + \
                 "\t\tif (data.status == 'error') {\n"                  + \
                 "\t\t\t// do something for error?\n"                   + \
                 "\t\t}\n\t},\n\t'json');" + \
-                "});--></script>"
+                "});" + \
+                "--></script>"
 
         return js
 
